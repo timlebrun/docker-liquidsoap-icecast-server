@@ -7,17 +7,17 @@ set("harbor.bind_addrs", ["0.0.0.0"])
 
 # Input Icecast stream
 
-live = input.harbor("live",
+live = input.harbor("{{ ICECAST_PATH }}live",
   port={{ ICECAST_PORT }},
+  user="{{ ICECAST_USERNAME }}",
   password="{{ ICECAST_PASSWORD }}",
   replay_metadata=true,
-  icy=true,
 )
 
 
 # Metadata server
 
-live = http_serve_metadata(live, "/live.json", {{ HTTP_PORT }});
+live = http_serve_metadata(live, "{{ HTTP_PATH }}live.json", {{ HTTP_PORT }});
 
 
 # Output formats
@@ -49,17 +49,17 @@ end
 
 output.harbor.hls(
   playlist="live.m3u8",
-  port={{ HTTP_PORT }},
-  path="/",
-  streams,
-  streams_info=streams_info,
+  port={{ HLS_PORT }},
+  path="{{ HLS_PATH }}",
+  fallible=true,
   segments=5,
   segment_duration=2.0,
   segment_name=segment_name,
   segments_overhead=5,
   persist=true,
   persist_at="/var/liquidsoap/hls.config",
-  fallible=true,
+  streams_info=streams_info,
+  streams,
   live,
 )
 
