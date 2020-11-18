@@ -1,6 +1,8 @@
 
+# @see http://u.delta9.pl/k/liquidsoap/scripts/set_json_metadata.html
+
 def http_serve_metadata(source, path, port) =
-  metadata = [];
+  meta = ref [];
 
   def update_metadata(m) = 
     title = m["title"]
@@ -14,16 +16,17 @@ def http_serve_metadata(source, path, port) =
       (recode(fst(x)),recode(snd(x))) 
     end
     
-    metadata = list.map(f, m)
+    meta := list.map(f, m)
   end
 
 
   def http_get_meta(~protocol,~data,~headers,uri) =
+    m = !meta
     http_response(
       protocol=protocol,
       code=200,
       headers=[("Content-Type","application/json; charset=utf-8")],
-      data=json_of(metadata)
+      data=json_of(m)
     )
   end
 
