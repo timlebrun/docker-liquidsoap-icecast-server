@@ -11,11 +11,15 @@ Alternatively, fragments can be pushed to a S3 container.
 ## Environment Variables
 
 `HTTP_PORT` - HTTP server port *(defaults to `80`)*  
-// HTTP_PATH - HTTP server path *(defaults to `/`)*  ! not implemented yet  
+`HTTP_PATH` - HTTP server path *(defaults to `/`)*
 
 `ICECAST_USERNAME` - Username to stream to icecast *(defaults to `'hackme'`)*  
 `ICECAST_PASSWORD` - Password to stream to icecast *(defaults to `'hackme'`)*  
-`ICECAST_PORT` - Port the icecast server should be listening to *(defaults to `$HTTP_PORT`)*  
+`ICECAST_PATH` - Port the icecast server should be listening to *(defaults to `$HTTP_PATH`)*  
+`ICECAST_PORT` - Path the icecast server should be listening at *(defaults to `$HTTP_PORT`)*  
+
+`HLS_PATH` - Path where the HLS server should be serving playlist and segments *(defaults to `$HLS_PATH`)*  
+`HLS_PORT` - Port the HLS server should be serving playlist and segments from *(defaults to `$HLS_PORT`)*  
 
 
   `S3_ACCESS_KEY` - S3 Access Key *(defaults to `'none'`)*  
