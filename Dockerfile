@@ -23,12 +23,12 @@ RUN apt install -y nodejs
 RUN npm install -g envhandlebars
 
 COPY ./index.html /var/www/index.html
+COPY ./http.liq ./http.liq
 COPY ./script.liq ./template.liq
 
 EXPOSE 80
 
 # Render template according to ENV, then start engine
 CMD envhandlebars < ./template.liq > ./script.liq && \
-  cat ./script.liq && \
   liquidsoap --version && \
   liquidsoap ./script.liq
