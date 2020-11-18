@@ -20,7 +20,9 @@ Alternatively, fragments can be pushed to a S3 container.
 
 `HLS_PATH` - Path where the HLS server should be serving playlist and segments *(defaults to `$HLS_PATH`)*  
 `HLS_PORT` - Port the HLS server should be serving playlist and segments from *(defaults to `$HLS_PORT`)*  
-
+`HLS_SEGMENTS_COUNT` -  Maximum number of segments in the playlist *(defaults to `10`)*  
+`HLS_SEGMENTS_OVERHEAD` - Maximum number of segments kept after leaving playlist *(defaults to `5`)*  
+`HLS_SEGMENTS_DURATION` - Duration in second of each segment *(defaults to `2.0`)*  
 
   `S3_ACCESS_KEY` - S3 Access Key *(defaults to `'none'`)*  
   `S3_SECRET_KEY` - S3 Access Key *(defaults to `'none'`)*  
@@ -45,5 +47,6 @@ Alternatively, fragments can be pushed to a S3 container.
 ## Roadmap
 - [x] Output HLS from an Icecast stream
 - [x] Handle and server metadata as JSON
+- [x] Allow HLS configuration from ENV
 - [ ] Implement S3 upload
 - [ ] (maybe) Implement playlist URL balancing ? 
