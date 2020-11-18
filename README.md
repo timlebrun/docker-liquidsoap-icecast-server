@@ -44,6 +44,6 @@ Alternatively, fragments can be pushed to a S3 container.
 
 ## Roadmap
 - [x] Output HLS from an Icecast stream
-- [ ] Handle and server metadata as JSON
+- [x] Handle and server metadata as JSON
 - [ ] Implement S3 upload
 - [ ] (maybe) Implement playlist URL balancing ? 
