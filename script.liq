@@ -1,4 +1,6 @@
 %include "http.liq"
+%include "segments.liq"
+%include "files.liq"
 
 set("init.allow_root", true)
 set("protocol.aws.endpoint", "{{ S3_ENDPOINT }}")
@@ -38,12 +40,6 @@ streams = [
   ("aac_hifi", aac_hifi),
 ]
 
-def segment_name(~position,~extname,stream_name) =
-  timestamp = int_of_float(gettimeofday())
-  duration = 2
-  "#{stream_name}_#{duration}_#{timestamp}_#{position}.#{extname}"
-end
-
 
 # Output HLS stream
 
@@ -55,9 +51,10 @@ output.harbor.hls(
   segments=5,
   segment_duration=2.0,
   segment_name=segment_name,
-  segments_overhead=5,
+  segment_name=hls_segment_name,
   persist=true,
   persist_at="/var/liquidsoap/hls.config",
+  on_file_change=on_hls_file_change,
   streams_info=streams_info,
   streams,
   live,

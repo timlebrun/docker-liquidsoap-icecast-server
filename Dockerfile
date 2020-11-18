@@ -28,6 +28,8 @@ RUN npm install -g envhandlebars
 
 COPY ./index.html /var/www/index.html
 COPY ./http.liq ./http.liq
+COPY ./files.liq ./files.liq
+COPY ./segments.liq ./segments.liq
 COPY ./script.liq ./template.liq
 
 EXPOSE 80
